@@ -19,7 +19,7 @@ Hệ thống được thiết kế theo hướng tiếp cận **Modular (Mô-đu
 │   ├── test/                     # Tập kiểm tra
 │   └── valid/                    # Tập validation
 ├── Images_QA/                    # Thư mục chứa các file JSON (cặp câu hỏi-đáp án cho từng ảnh sau khi chạy CreateQA.ipynb)
-└── seq2seqData/                  # Thư mục chứa dữ liệu đã tiền xử lý (numpy arrays) cho Seq2Seq
+└── seq2seqData/                  # Thư mục chứa dữ liệu đã tiền xử lý (numpy arrays) cho Seq2Seq (sau khi chạy CreateQA.ipynb)
 ```
 
 ### 1. `CNN_cla.ipynb` (Phân loại Trái cây)
