@@ -1,4 +1,4 @@
-# Dự án Visual Question Answering (VQA): Hỏi đáp về Trái cây qua Hình ảnh
+# Visual Question Answering (VQA): Hỏi đáp về Trái cây qua Hình ảnh
 
 Dự án này xây dựng một hệ thống AI có khả năng "nhìn" vào hình ảnh các loại trái cây và trả lời các câu hỏi tự nhiên liên quan đến **loại trái cây** và **số lượng** của chúng.
 
