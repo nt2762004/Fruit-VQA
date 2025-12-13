@@ -44,7 +44,7 @@ Notebook này xây dựng mô hình CNN để dự đoán số lượng trái c�
     *   **Kết quả:** Lưu model `fruit_regression_cnn.keras`.
 
 ### 3. `CreateQA.ipynb` (Sinh dữ liệu VQA)
-Notebook này đóng vai trò cầu nối, tạo ra bộ dữ liệu huấn luyện cho mô hình ngôn ngữ từ dữ liệu ảnh và nhãn có sẵn.
+Notebook này tạo ra bộ dữ liệu huấn luyện cho mô hình ngôn ngữ từ dữ liệu ảnh và nhãn có sẵn.
 
 *   **Mục tiêu:** Tạo ra các cặp Câu hỏi (Question) - Câu trả lời (Answer) tương ứng với từng ảnh.
 *   **Quy trình:**
@@ -57,7 +57,7 @@ Notebook này đóng vai trò cầu nối, tạo ra bộ dữ liệu huấn luy�
     *   **Lưu trữ:** Xuất ra các file JSON trong `Images_QA/` và các file `.npy` trong `seq2seqData/` (đã qua Tokenizer và Padding).
 
 ### 4. `VQAModel_with_attention.ipynb` (Mô hình VQA chính)
-Đây là trái tim của dự án, nơi kết hợp thông tin từ ảnh và câu hỏi để đưa ra câu trả lời.
+Đây là notebook chính kết hợp thông tin từ ảnh và câu hỏi để đưa ra câu trả lời.
 
 *   **Mục tiêu:** Trả lời câu hỏi tự nhiên của người dùng về bức ảnh.
 *   **Kiến trúc Mô hình (Seq2Seq + Attention):**
