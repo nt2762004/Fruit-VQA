@@ -4,6 +4,8 @@ Dự án này xây dựng một hệ thống AI có khả năng "nhìn" vào hì
 
 Hệ thống được thiết kế theo hướng tiếp cận **Modular (Mô-đun hóa)**, kết hợp giữa Thị giác máy tính (Computer Vision) và Xử lý ngôn ngữ tự nhiên (NLP).
 
+**Link Dataset**: [Fruit Dataset](https://drive.google.com/file/d/1Y5H61uAQLOAltYrpXGmDLfDIYSVyqQoZ/view?usp=sharing)
+
 ## Cấu trúc Thư mục
 
 ```
