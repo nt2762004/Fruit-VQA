@@ -1,10 +1,99 @@
-# Visual Question Answering (VQA): Hỏi đáp về Trái cây qua Hình ảnh
+# Visual Question Answering (VQA) Project: Fruit Q&A from Images
+
+This project builds an AI system that can "see" fruit images and answer natural questions about the **fruit type** and **quantity**.
+
+The system uses a **Modular** approach, combining Computer Vision and Natural Language Processing (NLP).
+
+## Folder Structure
+
+```
+├── CNN_cla.ipynb                 # Notebook for training fruit classification model
+├── CNN_reg.ipynb                 # Notebook for training fruit counting model (Regression)
+├── CreateQA.ipynb                # Notebook for generating Question-Answer data (QA Generation)
+├── VQAModel_with_attention.ipynb # Notebook for training the main VQA model (Seq2Seq + Attention)
+├── VQAModel_no_attention.ipynb   # Notebook for training the basic VQA model (Seq2Seq Baseline)
+├── Model_Evaluate.ipynb          # Notebook for evaluating system performance
+├── FruitDataFrame.csv            # Metadata file (image name, type, quantity)
+├── data/                         # Folder containing original images (Download from drive link)
+│   ├── train/                    # Training set
+│   ├── test/                     # Test set
+│   └── valid/                    # Validation set
+├── Images_QA/                    # Folder containing JSON files (question-answer pairs for each image after running CreateQA.ipynb)
+└── seq2seqData/                  # Folder containing preprocessed data (numpy arrays) for Seq2Seq (after running CreateQA.ipynb)
+```
+
+### 1. `CNN_cla.ipynb` (Fruit Classification)
+This notebook builds a Convolutional Neural Network (CNN) model to identify the type of fruit in the image.
+
+*   **Goal:** Identify what fruit is in the image (Apple, Banana, Orange, etc.).
+*   **Process:**
+    *   **Load Data:** Read images from `data/train`.
+    *   **Preprocessing:** Resize images, normalize pixels (0-1), One-hot encoding labels.
+    *   **Build Model:** Use CNN architecture with Conv2D, MaxPooling, and Dense layers.
+    *   **Train:** Optimize `categorical_crossentropy` loss function.
+    *   **Result:** Save model `fruit_classifier_cnn.keras`.
+
+### 2. `CNN_reg.ipynb` (Counting Quantity)
+This notebook builds a CNN model to predict the number of fruits in the image (Regression Problem).
+
+*   **Goal:** Count the number of fruits in the image.
+*   **Process:**
+    *   **Load Data:** Use `FruitDataFrame.csv` to get quantity labels (`count`).
+    *   **Build Model:** Similar CNN architecture but the last layer has 1 neuron (linear activation) to return a real number.
+    *   **Train:** Optimize `mse` (Mean Squared Error) loss function.
+    *   **Result:** Save model `fruit_regression_cnn.keras`.
+
+### 3. `CreateQA.ipynb` (Generate VQA Data)
+This notebook acts as a bridge, creating training data for the language model from available images and labels.
+
+*   **Goal:** Create Question - Answer pairs for each image.
+*   **Process:**
+    *   **Read Metadata:** Get `fruit_type` and `count` info from the CSV file.
+    *   **Generate Questions (Template):**
+        *   *Ask quantity:* "How many fruits are in the image?", "Count the fruits?"...
+        *   *Ask type:* "What fruit is this?", "Which fruit type is in the image?"...
+        *   *Combined:* "How many apples are in the picture?"...
+    *   **Generate Answers:** Create natural answers (e.g., "There are 5 apples in the image").
+    *   **Save:** Export to JSON files in `Images_QA/` and `.npy` files in `seq2seqData/` (processed by Tokenizer and Padding).
+
+### 4. `VQAModel_with_attention.ipynb` (Main VQA Model)
+This is the heart of the project, combining information from the image and the question to give an answer.
+
+*   **Goal:** Answer user's natural questions about the image.
+*   **Model Architecture (Seq2Seq + Attention):**
+    *   **Encoder (Question Processing):** Use LSTM layer to encode the question into a semantic vector.
+    *   **Image Feature Fusion:** Combine feature vectors from the image (Output of `CNN_cla` and `CNN_reg`) into the Encoder state.
+    *   **Decoder (Answer Generation):** Use LSTM to generate each word of the answer.
+    *   **Attention Mechanism:** Helps the model focus on important parts of the question and image info at each generation step, improving accuracy compared to normal Seq2Seq.
+*   **Inference (Prediction):**
+    1.  Image -> CNN Classification -> Fruit Type.
+    2.  Image -> CNN Counting -> Quantity.
+    3.  (Type + Quantity + Question) -> VQA Model -> Answer.
+
+### 5. `Model_Evaluate.ipynb` (Evaluation)
+Notebook used to measure the accuracy of the whole system.
+
+*   **Goal:** Objectively evaluate performance on the Test set.
+*   **Metrics:**
+    *   **Accuracy:** Accuracy of the answer.
+    *   **BLEU Score:** Evaluate similarity between machine's answer and reference answer (important in text generation).
+    *   **Confusion Matrix:** Analyze errors of the classification model.
+
+## Installation Requirements
+
+The project requires the following Python libraries:
+
+```bash
+pip install tensorflow pandas numpy matplotlib scikit-learn
+```
+
+---
+
+# Dự án Visual Question Answering (VQA): Hỏi đáp về Trái cây qua Hình ảnh
 
 Dự án này xây dựng một hệ thống AI có khả năng "nhìn" vào hình ảnh các loại trái cây và trả lời các câu hỏi tự nhiên liên quan đến **loại trái cây** và **số lượng** của chúng.
 
 Hệ thống được thiết kế theo hướng tiếp cận **Modular (Mô-đun hóa)**, kết hợp giữa Thị giác máy tính (Computer Vision) và Xử lý ngôn ngữ tự nhiên (NLP).
-
-**Link Dataset**: [Fruit Dataset](https://drive.google.com/file/d/1Y5H61uAQLOAltYrpXGmDLfDIYSVyqQoZ/view?usp=sharing)
 
 ## Cấu trúc Thư mục
 
@@ -46,7 +135,7 @@ Notebook này xây dựng mô hình CNN để dự đoán số lượng trái c�
     *   **Kết quả:** Lưu model `fruit_regression_cnn.keras`.
 
 ### 3. `CreateQA.ipynb` (Sinh dữ liệu VQA)
-Notebook này tạo ra bộ dữ liệu huấn luyện cho mô hình ngôn ngữ từ dữ liệu ảnh và nhãn có sẵn.
+Notebook này đóng vai trò cầu nối, tạo ra bộ dữ liệu huấn luyện cho mô hình ngôn ngữ từ dữ liệu ảnh và nhãn có sẵn.
 
 *   **Mục tiêu:** Tạo ra các cặp Câu hỏi (Question) - Câu trả lời (Answer) tương ứng với từng ảnh.
 *   **Quy trình:**
@@ -59,7 +148,7 @@ Notebook này tạo ra bộ dữ liệu huấn luyện cho mô hình ngôn ngữ
     *   **Lưu trữ:** Xuất ra các file JSON trong `Images_QA/` và các file `.npy` trong `seq2seqData/` (đã qua Tokenizer và Padding).
 
 ### 4. `VQAModel_with_attention.ipynb` (Mô hình VQA chính)
-Đây là notebook chính kết hợp thông tin từ ảnh và câu hỏi để đưa ra câu trả lời.
+Đây là trái tim của dự án, nơi kết hợp thông tin từ ảnh và câu hỏi để đưa ra câu trả lời.
 
 *   **Mục tiêu:** Trả lời câu hỏi tự nhiên của người dùng về bức ảnh.
 *   **Kiến trúc Mô hình (Seq2Seq + Attention):**
