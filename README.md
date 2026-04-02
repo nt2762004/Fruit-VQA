@@ -89,13 +89,14 @@ The latest attention-model run is summarized in `reports/training_summary.md` an
 
 Latest reported results:
 
-- Training accuracy: 0.9916
-- Validation accuracy: 0.9818
-- Training loss: 0.0255
-- Validation loss: 0.0463
-- BLEU: 0.6074
-- ROUGE-1: 0.8547
-- Inference time: 0.0790 s
+| Metric | Value |
+| --- | ---: |
+| Training accuracy | 0.9916 |
+| Validation accuracy | 0.9818 |
+| Training loss | 0.0255 |
+| Validation loss | 0.0463 |
+| BLEU | 0.6074 |
+| ROUGE-1 | 0.8547 |
 
 Evaluation was run on a 100-sample test subset.
 
