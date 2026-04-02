@@ -2,6 +2,8 @@
 
 Fruit VQA is a visual question answering project for fruit images. It combines dataset metadata, image-based fruit attribute extraction, and a seq2seq attention model to answer questions such as fruit type, count, and simple scene queries. The Streamlit app uses the default VQA model automatically, so there is no model selector in the UI.
 
+Link Deployed: https://fruit-visual-question-answering.streamlit.app/
+
 ## Key Features
 
 - Browse fruit samples from the built-in test gallery.
