@@ -121,32 +121,32 @@ python main.py predict --image "data/test/.../sample.jpg" --question "Trong ản
 
 ## Project Structure
 
-```text
+```
 Final_version/
-  main.py
-  streamlit_app.py
-  requirements.txt
-  README.md
-  fruit_classifier.keras
-  fruit_regression.keras
-  fruit_regression.scale.json
-  seq2seq_attention_full.keras
-  data/
-    train/
-    valid/
-    test/
-  Images_QA/
-  reports/
-    figures/
-    training_summary.md
-  seq2seqData/
-  src/
-    __init__.py
-    preprocess.py
-    predict.py
-    train.py
-    evaluate.py
-    model.py
+├── data/                         # Dataset folders
+│   ├── train/                    # Training images
+│   ├── valid/                    # Validation images
+│   └── test/                     # Test images
+├── Images_QA/                    # Images used specifically for VQA tasks
+├── reports/                      # Project reports and documentation
+│   ├── figures/                  # Visualization plots and charts
+│   └── training_summary.md       # Summary of training results
+├── seq2seqData/                  # Data specific to the Seq2Seq model
+├── src/                          # Core source code
+│   ├── __init__.py
+│   ├── preprocess.py             # Data preprocessing logic
+│   ├── predict.py                # Inference and prediction logic
+│   ├── train.py                  # Model training scripts
+│   ├── evaluate.py               # Evaluation metrics and scripts
+│   └── model.py                  # Model architecture definitions
+├── fruit_classifier.keras        # Classification model file
+├── fruit_regression.keras        # Regression model file
+├── fruit_regression.scale.json   # Scaling parameters for regression
+├── seq2seq_attention_full.keras  # VQA Seq2Seq Attention model file
+├── main.py                       # Main execution script
+├── streamlit_app.py              # Streamlit Web application script
+├── requirements.txt              # List of Python dependencies
+└── README.md                     # Project documentation and instructions
 ```
 
 Main modules:
