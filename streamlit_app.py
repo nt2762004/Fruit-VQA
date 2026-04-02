@@ -521,7 +521,7 @@ def open_gallery_dialog(gallery_rows: list[dict[str, object]]) -> None:
 
         selected_row = rows_for_type[int(selected_image_index)]
 
-        st.image(selected_row["image_path"], use_container_width=True)
+        st.image(selected_row["image_path"], width="stretch")
         st.markdown(
             f"<div class='selection-chip'>{html.escape(str(selected_row['filename']))} | {html.escape(str(selected_row['fruit_type']))} | count {html.escape(str(selected_row['count']))}</div>",
             unsafe_allow_html=True,
@@ -529,14 +529,14 @@ def open_gallery_dialog(gallery_rows: list[dict[str, object]]) -> None:
 
         confirm_col, cancel_col = st.columns(2)
         with confirm_col:
-            if st.button("Dùng ảnh này", use_container_width=True):
+            if st.button("Dùng ảnh này", width="stretch"):
                 st.session_state.selected_gallery_path = selected_row["image_path"]
                 st.session_state.selected_source = "Thư viện ảnh"
                 st.session_state.prediction_result = None
                 st.session_state.show_gallery_dialog = False
                 st.rerun()
         with cancel_col:
-            if st.button("Đóng", use_container_width=True):
+            if st.button("Đóng", width="stretch"):
                 st.session_state.show_gallery_dialog = False
                 st.rerun()
 
@@ -618,7 +618,7 @@ def main() -> None:
 
         if source_mode == "Thư viện ảnh":
             st.markdown("<div class='selection-chip'>Ảnh hiện tại: thư viện mẫu</div>", unsafe_allow_html=True)
-            if st.button("Mở popup chọn ảnh", use_container_width=True):
+            if st.button("Mở popup chọn ảnh", width="stretch"):
                 st.session_state.show_gallery_dialog = True
             st.caption("Popup sẽ cho phép chọn loại ảnh rồi chọn ảnh cụ thể để dự đoán.")
         else:
@@ -629,7 +629,7 @@ def main() -> None:
                 st.session_state.uploaded_file_name = uploaded_file.name
                 st.session_state.uploaded_file_bytes = image_bytes_to_preview(uploaded_file)
 
-        if st.button("Xóa kết quả", use_container_width=True):
+        if st.button("Xóa kết quả", width="stretch"):
             st.session_state.prediction_result = None
 
     if st.session_state.show_gallery_dialog:
@@ -700,7 +700,7 @@ def main() -> None:
                 unsafe_allow_html=True,
             )
         else:
-            st.image(active_image, use_container_width=True)
+            st.image(active_image, width="stretch")
             st.markdown(
                 f"<div class='selection-chip'>{html.escape(selection_note)}</div>",
                 unsafe_allow_html=True,
@@ -720,7 +720,7 @@ def main() -> None:
                 placeholder="Ví dụ: Trong ảnh có bao nhiêu trái cây?",
                 height=140,
             )
-            submitted = st.form_submit_button("Dự đoán", use_container_width=True)
+            submitted = st.form_submit_button("Dự đoán", width="stretch")
 
         st.caption("Mô hình sẽ dùng ảnh đã nạp cùng câu hỏi của bạn để sinh câu trả lời.")
 
