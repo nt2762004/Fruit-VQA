@@ -1,0 +1,42 @@
+[
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/valid/strawberry/images/Strawberryplant-GettyImages-123533002-5b198b33eb97de0036be58ae-d5982c5730984563a32598ee2a96fe3e_jpg.rf.8df953347c65bd7f695dfd4c28cc9d70.jpg",
+    "question": "Trong anh so luong trai cay la bao nhieu?",
+    "answer": "anh co tong cong 23 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/valid/strawberry/images/Strawberryplant-GettyImages-123533002-5b198b33eb97de0036be58ae-d5982c5730984563a32598ee2a96fe3e_jpg.rf.8df953347c65bd7f695dfd4c28cc9d70.jpg",
+    "question": "Anh co bao nhieu trai cay?",
+    "answer": "anh co 23 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/valid/strawberry/images/Strawberryplant-GettyImages-123533002-5b198b33eb97de0036be58ae-d5982c5730984563a32598ee2a96fe3e_jpg.rf.8df953347c65bd7f695dfd4c28cc9d70.jpg",
+    "question": "Co bao nhieu trai cay trong anh?",
+    "answer": "co 23 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/valid/strawberry/images/Strawberryplant-GettyImages-123533002-5b198b33eb97de0036be58ae-d5982c5730984563a32598ee2a96fe3e_jpg.rf.8df953347c65bd7f695dfd4c28cc9d70.jpg",
+    "question": "Anh chua loai trai cay nao?",
+    "answer": "anh chua strawberry"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/valid/strawberry/images/Strawberryplant-GettyImages-123533002-5b198b33eb97de0036be58ae-d5982c5730984563a32598ee2a96fe3e_jpg.rf.8df953347c65bd7f695dfd4c28cc9d70.jpg",
+    "question": "Trai cay trong anh la gi?",
+    "answer": "trai cay trong anh la strawberry"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/valid/strawberry/images/Strawberryplant-GettyImages-123533002-5b198b33eb97de0036be58ae-d5982c5730984563a32598ee2a96fe3e_jpg.rf.8df953347c65bd7f695dfd4c28cc9d70.jpg",
+    "question": "Loai trai cay nao trong anh?",
+    "answer": "strawberry"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/valid/strawberry/images/Strawberryplant-GettyImages-123533002-5b198b33eb97de0036be58ae-d5982c5730984563a32598ee2a96fe3e_jpg.rf.8df953347c65bd7f695dfd4c28cc9d70.jpg",
+    "question": "Anh co bao nhieu trai cay loai gi?",
+    "answer": "anh co 23 trai strawberry"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/valid/strawberry/images/Strawberryplant-GettyImages-123533002-5b198b33eb97de0036be58ae-d5982c5730984563a32598ee2a96fe3e_jpg.rf.8df953347c65bd7f695dfd4c28cc9d70.jpg",
+    "question": "Trong anh co bao nhieu trai cay va la loai nao?",
+    "answer": "trong anh co 23 trai strawberry"
+  }
+]

@@ -1,0 +1,9 @@
+tensorflow
+pandas
+numpy
+matplotlib
+scikit-learn
+nltk
+rouge-score
+tqdm
+streamlit

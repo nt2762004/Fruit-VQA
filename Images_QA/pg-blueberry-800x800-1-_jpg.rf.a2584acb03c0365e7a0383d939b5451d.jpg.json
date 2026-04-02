@@ -1,0 +1,42 @@
+[
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/blueberry/images/pg-blueberry-800x800-1-_jpg.rf.a2584acb03c0365e7a0383d939b5451d.jpg",
+    "question": "Trong anh so luong trai cay la bao nhieu?",
+    "answer": "anh co tong cong 53 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/blueberry/images/pg-blueberry-800x800-1-_jpg.rf.a2584acb03c0365e7a0383d939b5451d.jpg",
+    "question": "Anh co bao nhieu trai cay?",
+    "answer": "anh co 53 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/blueberry/images/pg-blueberry-800x800-1-_jpg.rf.a2584acb03c0365e7a0383d939b5451d.jpg",
+    "question": "Co bao nhieu trai cay trong anh?",
+    "answer": "co 53 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/blueberry/images/pg-blueberry-800x800-1-_jpg.rf.a2584acb03c0365e7a0383d939b5451d.jpg",
+    "question": "Anh chua loai trai cay nao?",
+    "answer": "anh chua blueberry"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/blueberry/images/pg-blueberry-800x800-1-_jpg.rf.a2584acb03c0365e7a0383d939b5451d.jpg",
+    "question": "Trai cay trong anh la gi?",
+    "answer": "trai cay trong anh la blueberry"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/blueberry/images/pg-blueberry-800x800-1-_jpg.rf.a2584acb03c0365e7a0383d939b5451d.jpg",
+    "question": "Loai trai cay nao trong anh?",
+    "answer": "blueberry"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/blueberry/images/pg-blueberry-800x800-1-_jpg.rf.a2584acb03c0365e7a0383d939b5451d.jpg",
+    "question": "Anh co bao nhieu trai cay loai gi?",
+    "answer": "anh co 53 trai blueberry"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/blueberry/images/pg-blueberry-800x800-1-_jpg.rf.a2584acb03c0365e7a0383d939b5451d.jpg",
+    "question": "Trong anh co bao nhieu trai cay va la loai nao?",
+    "answer": "trong anh co 53 trai blueberry"
+  }
+]

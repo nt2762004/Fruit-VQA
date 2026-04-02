@@ -1,0 +1,42 @@
+[
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/kiwi/images/Fuzzy_Kiwi_7_FGT_2a52cc5e-e77e-49ed-a51f-8dec35a2fdf7_650x_jpg.rf.cc2dfaf88b0a673dcc4efff8e7bafe78.jpg",
+    "question": "Trong anh so luong trai cay la bao nhieu?",
+    "answer": "anh co tong cong 3 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/kiwi/images/Fuzzy_Kiwi_7_FGT_2a52cc5e-e77e-49ed-a51f-8dec35a2fdf7_650x_jpg.rf.cc2dfaf88b0a673dcc4efff8e7bafe78.jpg",
+    "question": "Anh co bao nhieu trai cay?",
+    "answer": "anh co 3 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/kiwi/images/Fuzzy_Kiwi_7_FGT_2a52cc5e-e77e-49ed-a51f-8dec35a2fdf7_650x_jpg.rf.cc2dfaf88b0a673dcc4efff8e7bafe78.jpg",
+    "question": "Co bao nhieu trai cay trong anh?",
+    "answer": "co 3 trai cay"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/kiwi/images/Fuzzy_Kiwi_7_FGT_2a52cc5e-e77e-49ed-a51f-8dec35a2fdf7_650x_jpg.rf.cc2dfaf88b0a673dcc4efff8e7bafe78.jpg",
+    "question": "Anh chua loai trai cay nao?",
+    "answer": "anh chua kiwi"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/kiwi/images/Fuzzy_Kiwi_7_FGT_2a52cc5e-e77e-49ed-a51f-8dec35a2fdf7_650x_jpg.rf.cc2dfaf88b0a673dcc4efff8e7bafe78.jpg",
+    "question": "Trai cay trong anh la gi?",
+    "answer": "trai cay trong anh la kiwi"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/kiwi/images/Fuzzy_Kiwi_7_FGT_2a52cc5e-e77e-49ed-a51f-8dec35a2fdf7_650x_jpg.rf.cc2dfaf88b0a673dcc4efff8e7bafe78.jpg",
+    "question": "Loai trai cay nao trong anh?",
+    "answer": "kiwi"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/kiwi/images/Fuzzy_Kiwi_7_FGT_2a52cc5e-e77e-49ed-a51f-8dec35a2fdf7_650x_jpg.rf.cc2dfaf88b0a673dcc4efff8e7bafe78.jpg",
+    "question": "Anh co bao nhieu trai cay loai gi?",
+    "answer": "anh co 3 trai kiwi"
+  },
+  {
+    "image": "/mnt/c/Users/nguye/OneDrive/Desktop/Deep Learning/Tổng kết/Midterm_DeepLearning/Train_FruitsVQAModel/Final_version/data/train/kiwi/images/Fuzzy_Kiwi_7_FGT_2a52cc5e-e77e-49ed-a51f-8dec35a2fdf7_650x_jpg.rf.cc2dfaf88b0a673dcc4efff8e7bafe78.jpg",
+    "question": "Trong anh co bao nhieu trai cay va la loai nao?",
+    "answer": "trong anh co 3 trai kiwi"
+  }
+]
