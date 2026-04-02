@@ -12,6 +12,7 @@ import tensorflow as tf
 
 from src.preprocess import build_image_feature_vector, load_seq2seq_data, resolve_path, scan_dataset
 from src.predict import predict_answer, predict_fruit_attributes_from_models, load_regression_scale
+from src.runtime_data import ensure_dataset_dir, get_runtime_cache_root
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -22,6 +23,27 @@ REGRESSION_MODEL = PROJECT_ROOT / "fruit_regression.keras"
 DEFAULT_MODEL = PROJECT_ROOT / "seq2seq_attention_full.keras"
 THUMBNAIL_SIZE = (48, 48)
 UPLOAD_MATCH_THRESHOLD = 0.82
+
+
+def get_streamlit_secret(name: str) -> str:
+    try:
+        value = st.secrets.get(name, "")
+    except Exception:
+        value = ""
+    if isinstance(value, str):
+        return value.strip()
+    return str(value).strip()
+
+
+@st.cache_resource(show_spinner=False)
+def load_runtime_data_dir() -> str:
+    resolved_path = ensure_dataset_dir(
+        DATA_DIR,
+        download_url=get_streamlit_secret("DATA_ZIP_URL"),
+        file_id=get_streamlit_secret("DATA_ZIP_FILE_ID"),
+        cache_root=get_runtime_cache_root(),
+    )
+    return resolved_path.as_posix()
 
 
 def inject_styles() -> None:
@@ -546,9 +568,18 @@ def main() -> None:
     st.set_page_config(page_title="Fruit VQA Studio", page_icon="🍓", layout="wide")
     inject_styles()
 
-    gallery_rows = load_test_gallery(DATA_DIR)
+    try:
+        with st.spinner("Đang chuẩn bị dataset cho phiên chạy hiện tại..."):
+            runtime_data_dir = load_runtime_data_dir()
+    except Exception as error:  # noqa: BLE001
+        st.error("Không thể khởi tạo dataset cho Streamlit Cloud.")
+        st.info("Hãy đặt DATA_ZIP_URL hoặc DATA_ZIP_FILE_ID trong Streamlit secrets, hoặc đảm bảo thư mục data/ đã có sẵn trong repo.")
+        st.code(str(error), language="text")
+        st.stop()
+
+    gallery_rows = load_test_gallery(runtime_data_dir)
     if not gallery_rows:
-        st.error("Không tìm thấy ảnh trong data/test. Hãy kiểm tra lại cấu trúc dataset trước khi chạy app.")
+        st.error("Không tìm thấy ảnh trong dataset. Hãy kiểm tra lại cấu trúc train/valid/test sau khi giải nén zip.")
         st.stop()
 
     model_files = list_model_files(PROJECT_ROOT)
@@ -631,7 +662,7 @@ def main() -> None:
             else:
                 uploaded_key = hashlib.sha1(st.session_state.uploaded_file_bytes).hexdigest()
                 if st.session_state.uploaded_recognition_key != uploaded_key:
-                    direct_bundle = load_direct_recognition_bundle(DATA_DIR)
+                    direct_bundle = load_direct_recognition_bundle(runtime_data_dir)
                     recognized_row = predict_fruit_attributes_from_models(
                         st.session_state.uploaded_file_bytes,
                         direct_bundle["classifier_model"],
@@ -701,7 +732,7 @@ def main() -> None:
         else:
             with st.spinner("Đang tải model và tạo dự đoán..."):
                 try:
-                    result = predict_from_row(active_row, question.strip(), chosen_model, str(SEQ2SEQ_DIR), str(DATA_DIR))
+                    result = predict_from_row(active_row, question.strip(), chosen_model, str(SEQ2SEQ_DIR), runtime_data_dir)
                 except Exception as error:  # noqa: BLE001
                     st.error("Không thể chạy mô hình dự đoán. Hãy kiểm tra lại file model hoặc môi trường TensorFlow.")
                     st.code(str(error), language="text")

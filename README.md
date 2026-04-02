@@ -48,6 +48,23 @@ The project also includes pre-trained model files at the repository root:
 - `fruit_regression.scale.json`
 - `seq2seq_attention_full.keras`
 
+### Streamlit Cloud deployment
+
+If you deploy the app on Streamlit Cloud, the local `data/` folder may not be available at runtime. The app first checks the local dataset and, if needed, downloads a zip from Google Drive, unpacks it, and uses the extracted copy.
+
+Add one of these secrets in the Streamlit Cloud app settings:
+
+- `DATA_ZIP_URL`: direct Google Drive share URL for the dataset zip.
+- `DATA_ZIP_FILE_ID`: Google Drive file ID for the dataset zip.
+
+If you do not set a secret, the app falls back to this dataset link by default:
+
+- `https://drive.google.com/file/d/1Y5H61uAQLOAltYrpXGmDLfDIYSVyqQoZ/view?usp=sharing`
+
+File ID: `1Y5H61uAQLOAltYrpXGmDLfDIYSVyqQoZ`
+
+The extracted dataset is stored in a cache directory on the server and reused for the lifetime of the process.
+
 ## Methodology (Core AI)
 
 The pipeline is built around two stages:
