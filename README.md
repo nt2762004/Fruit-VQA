@@ -50,6 +50,22 @@ The project also includes pre-trained model files at the repository root:
 - `fruit_regression.scale.json`
 - `seq2seq_attention_full.keras`
 
+## Questioning Rules
+
+The VQA model works best with short, explicit questions about the fruit content in the image. The training data is centered on three question patterns:
+
+- fruit count: ask how many fruits appear in the image,
+- fruit type: ask what fruit is shown,
+- combined queries: ask both the number and the fruit type in one sentence.
+
+The app normalizes question text before tokenization by lowercasing it, removing accents, and stripping special characters. In practice, that means you should keep the question simple and avoid relying on punctuation or special formatting.
+
+Recommended examples:
+
+- `Trong ảnh có bao nhiêu trái cây?`
+- `Trái cây trong ảnh là gì?`
+- `Trong ảnh có bao nhiêu trái cây và là loại nào?`
+
 ## Methodology (Core AI)
 
 The pipeline is built around two stages:
