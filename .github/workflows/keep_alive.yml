@@ -1,0 +1,15 @@
+name: Wake up Streamlit App
+
+on:
+  schedule:
+    # Chạy mỗi 15 phút một lần (Bạn có thể chỉnh lại)
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Cho phép bạn nhấn nút chạy thử thủ công
+
+jobs:
+  ping_app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send request to Streamlit
+        run: |
+          curl -I -L https://fruit-visual-question-answering.streamlit.app/
