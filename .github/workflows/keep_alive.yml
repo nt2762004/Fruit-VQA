@@ -2,8 +2,8 @@ name: Wake up Streamlit App
 
 on:
   schedule:
-    # Chạy mỗi 15 phút một lần
-    - cron: '*/15 * * * *'
+    # Chạy mỗi 10 phút một lần
+    - cron: '*/10 * * * *'
   workflow_dispatch: # Cho phép nhấn nút chạy thủ công
 
 jobs:
