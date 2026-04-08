@@ -1,42 +1,31 @@
 name: Wake up Streamlit App
-
 on:
   schedule:
-    # Chạy mỗi 10 phút một lần
-    - cron: '*/10 * * * *'
-  workflow_dispatch: # Cho phép nhấn nút chạy thủ công
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
 
 jobs:
   ping_app:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.9'
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Install requests
-        run: pip install requests
-
-      - name: Ping App with Python
+      - name: Install Playwright
         run: |
-          import requests
-          url = "https://fruit-visual-question-answering.streamlit.app/"
-          headers = {
-              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-          }
-          try:
-              # allow_redirects=True là mặc định, timeout để tránh treo job
-              response = requests.get(url, headers=headers, timeout=15)
-              print(f"Final URL: {response.url}")
-              print(f"Status Code: {response.status_code}")
-              
-              if response.status_code == 200:
-                  print("Thành công! App đã thức.")
-              else:
-                  print(f"App trả về lỗi hoặc trang Login, nhưng vẫn tính là 1 lượt truy cập: {response.status_code}")
-          except Exception as e:
-              print(f"Lỗi kết nối: {e}")
-        shell: python
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Run Playwright to wake up app
+        run: |
+          node - e "
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch();
+            const page = await browser.newPage();
+            await page.goto('https://fruit-visual-question-answering.streamlit.app/', { waitUntil: 'networkidle' });
+            console.log('Page title:', await page.title());
+            await page.waitForTimeout(5000); // Đợi 5s để đảm bảo JS đã chạy
+            await browser.close();
+          })();
+          "
