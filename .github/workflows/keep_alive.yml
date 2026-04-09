@@ -26,30 +26,48 @@ jobs:
           node -e "
           const { chromium } = require('playwright');
           (async () => {
-            const browser = await chromium.launch();
+            const browser = await chromium.launch({ headless: true });
             const page = await browser.newPage();
+            
+            // Tăng timeout lên vì quá trình wake up có thể chậm
+            page.setDefaultTimeout(90000);
+          
             try {
               console.log('--- Đang truy cập App ---');
-              await page.goto('https://fruit-visual-question-answering.streamlit.app/', { waitUntil: 'networkidle', timeout: 60000 });
-              
-              // Chờ nút xuất hiện trong tối đa 10 giây
-              const wakeUpButton = await page.waitForSelector('[data-testid=\"wakeup-button-owner\"]', { timeout: 10000 }).catch(() => null);
-
+              await page.goto('https://fruit-visual-question-answering.streamlit.app/', { waitUntil: 'domcontentloaded' });
+          
+              // 1. Kiểm tra nút Wake up (thử cả selector text và test-id)
+              const wakeUpButton = await page.waitForSelector('text=Yes, get this app back up!', { timeout: 15000 }).catch(() => null);
+          
               if (wakeUpButton) {
-                console.log('--- Phát hiện nút Wake Up. Đang nhấn... ---');
-                await wakeUpButton.click();
-                console.log('--- Đã nhấn! Đợi 15s để app load... ---');
-                await page.waitForTimeout(15000); 
-                console.log('--- Hoàn tất đánh thức ---');
+                console.log('--- Thấy nút Wake Up, đang click mạnh... ---');
+                await wakeUpButton.click({ force: true });
+                
+                console.log('--- Đã click. Chờ app khởi tạo (có thể mất 30-60s)... ---');
+                
+                // 2. Đợi cho đến khi một thành phần của Streamlit App thực sự xuất hiện
+                // Thường là lớp phủ 'stApp' hoặc 'stSidebar'
+                await page.waitForSelector('[data-testid=\"stAppViewContainer\"]', { timeout: 60000 });
+                console.log('--- App đã hiển thị giao diện chính! ---');
               } else {
-                console.log('--- Không thấy nút Wake Up. Có vẻ app vẫn đang chạy bình thường ---');
+                console.log('--- Không thấy nút Wake Up, kiểm tra xem app có sẵn chưa... ---');
+                const isLoaded = await page.$('[data-testid=\"stAppViewContainer\"]');
+                if (isLoaded) console.log('--- App đã thức sẵn rồi! ---');
               }
-              
-              console.log('Tiêu đề trang:', await page.title());
+          
+              // 3. Thực hiện một tương tác giả để "giữ nhiệt"
+              // Click vào khoảng không hoặc di chuyển chuột
+              await page.mouse.move(100, 100);
+              await page.mouse.down();
+              await page.waitForTimeout(5000); 
+          
             } catch (err) {
-              console.error('Lỗi rồi:', err.message);
+              console.log('Thông báo: ' + err.message);
+              // Chụp ảnh màn hình để debug nếu cần (lưu trong folder của action)
+              await page.screenshot({ path: 'debug_app.png' });
             } finally {
               await browser.close();
+              console.log('--- Kết thúc Workflow ---');
             }
           })();
           "
