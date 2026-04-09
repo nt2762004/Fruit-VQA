@@ -1,7 +1,7 @@
 name: Wake up Streamlit App
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/30 * * * *' # Chạy mỗi 30 phút
   workflow_dispatch:
 
 jobs:
@@ -11,6 +11,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Install Playwright
         run: |
           npm install playwright
@@ -18,14 +23,33 @@ jobs:
 
       - name: Run Playwright to wake up app
         run: |
-          node - e "
+          node -e "
           const { chromium } = require('playwright');
           (async () => {
             const browser = await chromium.launch();
             const page = await browser.newPage();
-            await page.goto('https://fruit-visual-question-answering.streamlit.app/', { waitUntil: 'networkidle' });
-            console.log('Page title:', await page.title());
-            await page.waitForTimeout(5000); // Đợi 5s để đảm bảo JS đã chạy
-            await browser.close();
+            try {
+              console.log('--- Đang truy cập App ---');
+              await page.goto('https://fruit-visual-question-answering.streamlit.app/', { waitUntil: 'networkidle', timeout: 60000 });
+              
+              // Chờ nút xuất hiện trong tối đa 10 giây
+              const wakeUpButton = await page.waitForSelector('[data-testid=\"wakeup-button-owner\"]', { timeout: 10000 }).catch(() => null);
+
+              if (wakeUpButton) {
+                console.log('--- Phát hiện nút Wake Up. Đang nhấn... ---');
+                await wakeUpButton.click();
+                console.log('--- Đã nhấn! Đợi 15s để app load... ---');
+                await page.waitForTimeout(15000); 
+                console.log('--- Hoàn tất đánh thức ---');
+              } else {
+                console.log('--- Không thấy nút Wake Up. Có vẻ app vẫn đang chạy bình thường ---');
+              }
+              
+              console.log('Tiêu đề trang:', await page.title());
+            } catch (err) {
+              console.error('Lỗi rồi:', err.message);
+            } finally {
+              await browser.close();
+            }
           })();
           "
