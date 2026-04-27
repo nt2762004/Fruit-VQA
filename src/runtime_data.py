@@ -70,7 +70,7 @@ def ensure_dataset_dir(
         shutil.rmtree(extract_root)
     extract_root.mkdir(parents=True, exist_ok=True)
 
-    downloaded_path = gdown.download(url=url, output=zip_path.as_posix(), quiet=False, fuzzy=True)
+    downloaded_path = gdown.download(url=url, output=zip_path.as_posix(), quiet=False)
     if not downloaded_path:
         raise RuntimeError("Failed to download the dataset zip from Google Drive.")
 
